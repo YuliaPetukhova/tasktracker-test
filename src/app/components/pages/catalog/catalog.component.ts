@@ -62,7 +62,6 @@ export class CatalogComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.sort);
     this.dataSource.sort = this.sort;
   }
 
