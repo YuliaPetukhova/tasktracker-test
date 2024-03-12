@@ -4,37 +4,43 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSort, MatSortModule} from '@angular/material/sort';
+import {ITask} from '../../../models/task';
 
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-
-];
+const TASKS: ITask[] = [
+  {
+    id: 1,
+    header: 'Задача',
+    title: 'Погулять',
+    deadline: '12.03.2024',
+    priority: 'срочно',
+    progress: 50,
+    users: [
+      'Юлия',
+      'Гарри',
+    ],
+  },
+  {
+    id: 2,
+    header: 'Задача 2',
+    title: 'Поспать',
+    deadline: '16.03.2024',
+    priority: 'через неделю',
+    progress: 9,
+    users: ['Джеймс'],
+  },
+  {
+    id: 3,
+    header: 'Задача 3',
+    title: 'Пожить',
+    deadline: '15.03.2024',
+    priority: 'завтра',
+    progress: 100,
+    users: [
+      'Гарри',
+      'Джеймс',
+    ],
+  },
+]
 
 @Component({
   selector: 'app-catalog',
@@ -50,15 +56,14 @@ const NAMES: string[] = [
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users'];
+
+  dataSource: MatTableDataSource<ITask>;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor() {
-    const users = Array.from({length: 10}, (_, k) => createNewUser(k + 1));
-
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource(TASKS);
   }
 
   ngAfterViewInit() {
@@ -70,19 +75,3 @@ export class CatalogComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
-
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
-
