@@ -1,5 +1,5 @@
 import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import {RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -53,6 +53,7 @@ const TASKS: ITask[] = [
     MatTableModule,
     MatSortModule,
     MatButton,
+    RouterLink,
   ],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'

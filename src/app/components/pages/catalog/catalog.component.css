@@ -16,4 +16,9 @@ td, th {
   margin: 10px 0;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=catalog.component.css.map */

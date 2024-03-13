@@ -14,4 +14,10 @@
 a {
   margin-right: 20px;
   font-size: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  text-decoration: underline;
 }

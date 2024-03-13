@@ -41,8 +41,11 @@
       <td mat-cell *matCellDef="let row">
         {{ row.actions }}
         <div>
-          <button class="form-field" mat-raised-button color="primary">Редактировать</button>
-          <button class="form-field" mat-raised-button color="warn">Подробнее</button>
+          <button class="form-field" mat-raised-button color="primary">Редактировать
+          </button>
+          <button class="form-field" mat-raised-button color="warn">
+            <a routerLink="/task">Подробнее</a>
+          </button>
         </div>
 
       </td>
