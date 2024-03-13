@@ -7,4 +7,3 @@ export interface ITask {
   progress: number;
   users: string[];
 }
-

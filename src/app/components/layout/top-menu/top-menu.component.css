@@ -16,24 +16,4 @@ a {
   font-size: 20px;
 }
 
-:host {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.example-container {
-  text-align: center;
-}
-
-.form-container {
-  width: 300px;
-  margin: 10px auto 0;
-}
-
-.form-field {
-  display: block;
-}
-
 /*# sourceMappingURL=top-menu.component.css.map */
