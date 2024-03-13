@@ -1,23 +1,18 @@
-
 :host {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  margin-top: 38px;
+  padding: 0 10px 0 10px;
 }
-
 
 .example-container{
   text-align: center
 }
 
-.form-container{
-  width: 300px;
-  margin: 10px auto 0;
-}
-
 .form-field{
-  display: block
+  display: block;
 }
 
 .close-btn img {
