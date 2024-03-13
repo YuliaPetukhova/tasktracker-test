@@ -5,6 +5,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {ITask} from '../../../models/ITask';
+import {MatButton} from "@angular/material/button";
 
 const TASKS: ITask[] = [
   {
@@ -51,12 +52,13 @@ const TASKS: ITask[] = [
     MatInputModule,
     MatTableModule,
     MatSortModule,
+    MatButton,
   ],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent implements AfterViewInit {
-  displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users'];
+  displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users', 'actions'];
 
   dataSource: MatTableDataSource<ITask>;
 

@@ -11,4 +11,9 @@ td, th {
   width: 15%;
 }
 
+.form-field {
+  display: block;
+  margin: 10px 0;
+}
+
 /*# sourceMappingURL=catalog.component.css.map */

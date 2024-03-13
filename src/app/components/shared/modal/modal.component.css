@@ -18,4 +18,10 @@
   display: block;
 }
 
+.close-btn img {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
 /*# sourceMappingURL=modal.component.css.map */

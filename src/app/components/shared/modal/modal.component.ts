@@ -4,13 +4,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
 import {TasksService} from "../../../services/tasks.service";
-import {MatDialogRef} from '@angular/material/dialog';
+import {MatDialogClose, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal',
@@ -25,6 +25,8 @@ import {MatDialogRef} from '@angular/material/dialog';
     MatSelectModule,
     ReactiveFormsModule,
     CommonModule,
+    NgOptimizedImage,
+    MatDialogClose,
   ],
   providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
   templateUrl: './modal.component.html',
