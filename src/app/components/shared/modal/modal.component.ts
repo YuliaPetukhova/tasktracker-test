@@ -34,22 +34,21 @@ import {progressList} from "../../../data/progressList";
     InputMaskModule
   ],
   providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: 'modal.component.html',
+  styleUrl: 'modal.component.scss'
 })
 export class ModalComponent {
-
   taskForm: FormGroup;
   submitted: boolean = false;
 
-  usersList = userList;
-  progressList = progressList;
-  minDate = new Date();
-  maxDate = new Date(2030, 2, 14);
+  usersList: string[] = userList;
+  progressList: string[] = progressList;
+  minDate: Date = new Date();
+  maxDate: Date = new Date(2030, 2, 14);
 
   constructor(
     private formBuilder: FormBuilder,
-    protected tasksService: TasksService,
+    private tasksService: TasksService,
     private dialogRef: MatDialogRef<ModalComponent>,
   ) {
     this.taskForm = this.formBuilder.group({
@@ -62,7 +61,7 @@ export class ModalComponent {
     });
   }
 
-  submit() {
+  onSubmit() {
     this.submitted = true;
 
     if (!this.taskForm.valid) {
@@ -88,6 +87,5 @@ export class ModalComponent {
     },
   });
 
-  dateFC = new FormControl('');
+  dateFC: FormControl<string | null> = new FormControl('');
 }
-

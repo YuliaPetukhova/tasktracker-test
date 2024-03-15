@@ -23,8 +23,8 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
     CommonModule,
     ModalComponent,
   ],
-  templateUrl: './top-menu.component.html',
-  styleUrl: './top-menu.component.scss'
+  templateUrl: 'top-menu.component.html',
+  styleUrl: 'top-menu.component.scss'
 })
 export class TopMenuComponent {
   constructor(public dialog: MatDialog) {

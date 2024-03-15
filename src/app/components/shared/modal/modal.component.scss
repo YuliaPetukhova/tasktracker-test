@@ -5,18 +5,14 @@
   align-items: stretch;
   margin-top: 38px;
   padding: 0 10px 0 10px;
-}
 
-.example-container {
-  text-align: center
-}
+  .form-field {
+    display: block;
+  }
 
-.form-field {
-  display: block;
-}
-
-.close-btn img {
-  position: absolute;
-  right: 5px;
-  top: 5px;
+  .close-btn img {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
 }

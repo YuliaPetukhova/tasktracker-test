@@ -8,15 +8,15 @@
   min-height: 104px;
   margin: 10px auto;
   padding: 0 10px;
-}
 
-.task-prop-header {
-  font-size: 23px;
-  margin-bottom: 20px;
-}
+  .task-prop-header {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
 
-.task-prop-value {
-  margin-bottom: 15px;
+  .task-prop-value {
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -24,11 +24,11 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: stretch;
-  }
 
-  .task-prop-header {
-    font-size: 20px;
-    margin-bottom: 15px;
-    padding-right: 30px;
+    .task-prop-header {
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-right: 30px;
+    }
   }
 }

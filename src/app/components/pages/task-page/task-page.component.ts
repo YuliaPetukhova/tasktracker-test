@@ -28,8 +28,8 @@ import {DatePipe} from "@angular/common";
     MatIcon,
     DatePipe
   ],
-  templateUrl: './task-page.component.html',
-  styleUrl: './task-page.component.scss'
+  templateUrl: 'task-page.component.html',
+  styleUrl: 'task-page.component.scss'
 })
 export class TaskPageComponent implements OnInit {
   task: ITask | undefined;

@@ -1,22 +1,17 @@
 table {
   width: 100%;
+
+  td, th {
+    width: 15%;
+
+    .form-field {
+      display: block;
+      margin: 10px 0;
+    }
+  }
 }
 
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-td, th {
-  width: 15%;
-}
-
-.form-field {
-  display: block;
-  margin: 10px 0;
-}
-
-a {
-  color: white;
-  text-decoration: none;
 }

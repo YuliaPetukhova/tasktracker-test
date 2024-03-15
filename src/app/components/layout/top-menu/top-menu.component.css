@@ -1,25 +1,19 @@
-.content {
-  margin-bottom: 20px;
-}
-
-.button {
+.top-menu {
+  padding: 20px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-left: 10px;
-  margin-top: 20px;
   align-items: center;
 }
-
-a {
+.top-menu .link-catalog {
   margin-right: 20px;
   font-size: 20px;
   text-decoration: none;
   color: black;
 }
-
-a:hover {
+.top-menu .link-catalog:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=top-menu.component.css.map */

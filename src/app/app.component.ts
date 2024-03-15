@@ -8,8 +8,8 @@ import {TopMenuComponent} from "./components/layout/top-menu/top-menu.component"
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CatalogComponent, TaskPageComponent, RouterLink, RouterLinkActive, TopMenuComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: 'app.component.html',
+  styleUrl: 'app.component.scss'
 })
 export class AppComponent {
   title = 'app';

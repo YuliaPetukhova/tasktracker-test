@@ -6,16 +6,10 @@
   margin-top: 38px;
   padding: 0 10px 0 10px;
 }
-
-.example-container {
-  text-align: center;
-}
-
-.form-field {
+:host .form-field {
   display: block;
 }
-
-.close-btn img {
+:host .close-btn img {
   position: absolute;
   right: 5px;
   top: 5px;

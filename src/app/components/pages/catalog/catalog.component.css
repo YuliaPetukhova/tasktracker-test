@@ -1,24 +1,17 @@
 table {
   width: 100%;
 }
-
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-td, th {
+table td, table th {
   width: 15%;
 }
-
-.form-field {
+table td .form-field, table th .form-field {
   display: block;
   margin: 10px 0;
 }
 
-a {
-  color: white;
-  text-decoration: none;
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=catalog.component.css.map */

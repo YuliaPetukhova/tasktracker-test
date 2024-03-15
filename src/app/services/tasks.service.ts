@@ -12,7 +12,7 @@ export class TasksService {
     this.taskSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('tasks')!));
   }
 
-  saveData(task: ITask) {
+  saveData(task: ITask): void {
     let formDataArray: ITask[] = JSON.parse(localStorage.getItem('tasks')!) || [];
 
     formDataArray.push(task);
@@ -21,16 +21,16 @@ export class TasksService {
   }
 
   findTaskById(id: number): ITask {
-    let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
+    let localStorageTasks: ITask[] = JSON.parse(localStorage.getItem('tasks')!);
+    let localStorageTaskIndex: number = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
 
     return localStorageTasks[localStorageTaskIndex];
   }
 
-  changeStatus(id: number, value: string) {
-    let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
+  changeStatus(id: number, value: string): void {
+    let localStorageTasks: ITask[] = JSON.parse(localStorage.getItem('tasks')!);
 
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
+    let localStorageTaskIndex: number = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
     let localStorageTask: ITask = localStorageTasks[localStorageTaskIndex];
 
     localStorageTask.progress = value;
@@ -39,10 +39,10 @@ export class TasksService {
     localStorage.setItem('tasks', JSON.stringify(localStorageTasks));
   }
 
-  changeUsers(id: number, value: string[]) {
-    let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
+  changeUsers(id: number, value: string[]): void {
+    let localStorageTasks: ITask[] = JSON.parse(localStorage.getItem('tasks')!);
 
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
+    let localStorageTaskIndex: number = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
     let localStorageTask: ITask = localStorageTasks[localStorageTaskIndex];
 
     localStorageTask.users = value;

@@ -31,7 +31,9 @@
       <td mat-cell *matCellDef="let row">
 
         <mat-select [(value)]="row.progress" (selectionChange)="onStatusChange($event, row.id)">
-          <mat-option *ngFor="let progress of progressList" [value]="progress">{{ progress }}</mat-option>
+          @for (progress of progressList; track progress) {
+            <mat-option [value]="progress">{{ progress }}</mat-option>
+          }
         </mat-select>
       </td>
     </ng-container>
@@ -40,7 +42,9 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Исполнители</th>
       <td mat-cell *matCellDef="let row">
         <mat-select multiple [(value)]="row.users" (selectionChange)="onUsersChange($event, row.id)">
-          <mat-option *ngFor="let user of usersList" [value]="user">{{ user }}</mat-option>
+          @for (user of usersList; track user) {
+            <mat-option [value]="user">{{ user }}</mat-option>
+          }
         </mat-select>
       </td>
     </ng-container>
@@ -48,11 +52,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Действия</th>
       <td mat-cell *matCellDef="let row">
-        <a routerLink="/task/{{ row.id }}">
-          <button class="form-field" mat-raised-button color="warn">
-            Подробнее
-          </button>
-        </a>
+        <button routerLink="/task/{{ row.id }}" class="form-field" mat-raised-button color="warn">
+          Подробнее
+        </button>
       </td>
     </ng-container>
 

@@ -1,4 +1,4 @@
-export const progressList = [
+export const progressList: string[] = [
   'В очереди',
   'В работе',
   'Заблокировано',

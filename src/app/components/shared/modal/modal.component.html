@@ -2,7 +2,7 @@
   <img ngSrc="assets/close.png" alt="close-btn" height="32" width="32">
 </div>
 
-<form [formGroup]="taskForm" (submit)="submit()">
+<form [formGroup]="taskForm" (submit)="onSubmit()">
   <mat-form-field class="form-field">
     <mat-label>Заголовок</mat-label>
     <input matInput formControlName="title" required>
@@ -36,14 +36,18 @@
   <mat-form-field class="form-field">
     <mat-label>Статус</mat-label>
     <mat-select formControlName="progress" required>
-      <mat-option *ngFor="let progress of progressList" [value]="progress">{{ progress }}</mat-option>
+      @for (progress of progressList; track progress) {
+        <mat-option [value]="progress">{{ progress }}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
 
   <mat-form-field class="form-field">
     <mat-label>Исполнители</mat-label>
     <mat-select formControlName="users" multiple required>
-      <mat-option *ngFor="let user of usersList" [value]="user">{{ user }}</mat-option>
+      @for (user of usersList; track user) {
+        <mat-option [value]="user">{{ user }}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
 

@@ -32,8 +32,8 @@ import {progressList} from "../../../data/progressList";
     NgForOf,
     DatePipe,
   ],
-  templateUrl: './catalog.component.html',
-  styleUrl: './catalog.component.css'
+  templateUrl: 'catalog.component.html',
+  styleUrl: 'catalog.component.css'
 })
 export class CatalogComponent implements AfterViewInit {
   displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users', 'actions'];
@@ -45,6 +45,8 @@ export class CatalogComponent implements AfterViewInit {
   dataSource: MatTableDataSource<ITask>;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
+
+  protected readonly progressList = progressList;
 
   constructor(private tasksService: TasksService) {
     this.dataSource = new MatTableDataSource(undefined);
@@ -70,6 +72,4 @@ export class CatalogComponent implements AfterViewInit {
   onUsersChange($event: MatSelectChange, id: number) {
     this.tasksService.changeUsers(id, $event.value);
   }
-
-  protected readonly progressList = progressList;
 }
