@@ -4,7 +4,7 @@ import { TaskPageComponent } from './components/pages/task-page/task-page.compon
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 
 export const routes: Routes = [
-  { path: 'task', component: TaskPageComponent },
+  { path: 'task/:id', component: TaskPageComponent },
   { path: 'catalog', component: CatalogComponent },
 ];
 

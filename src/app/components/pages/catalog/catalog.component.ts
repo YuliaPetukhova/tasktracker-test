@@ -6,42 +6,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {ITask} from '../../../models/ITask';
 import {MatButton} from "@angular/material/button";
-
-const TASKS: ITask[] = [
-  {
-    id: 1,
-    header: 'Задача',
-    title: 'Погулять',
-    deadline: '12.03.2024',
-    priority: 'срочно',
-    progress: 50,
-    users: [
-      'Юлия',
-      'Гарри',
-    ],
-  },
-  {
-    id: 2,
-    header: 'Задача 2',
-    title: 'Поспать',
-    deadline: '16.03.2024',
-    priority: 'через неделю',
-    progress: 9,
-    users: ['Джеймс'],
-  },
-  {
-    id: 3,
-    header: 'Задача 3',
-    title: 'Пожить',
-    deadline: '15.03.2024',
-    priority: 'завтра',
-    progress: 100,
-    users: [
-      'Гарри',
-      'Джеймс',
-    ],
-  },
-]
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect, MatSelectChange} from "@angular/material/select";
+import {TasksService} from "../../../services/tasks.service";
+import {DatePipe, NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-catalog',
@@ -54,6 +23,12 @@ const TASKS: ITask[] = [
     MatSortModule,
     MatButton,
     RouterLink,
+    FormsModule,
+    MatOption,
+    MatSelect,
+    ReactiveFormsModule,
+    NgForOf,
+    DatePipe,
   ],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
@@ -61,12 +36,21 @@ const TASKS: ITask[] = [
 export class CatalogComponent implements AfterViewInit {
   displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users', 'actions'];
 
+  users = new FormControl();
+
+  usersList = ['Виктория', 'Эдуард', 'Филипп'];
+
   dataSource: MatTableDataSource<ITask>;
+
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(TASKS);
+  constructor(private tasksService: TasksService) {
+    this.dataSource = new MatTableDataSource(undefined);
+
+    tasksService.taskSubject.subscribe((tasks) => {
+      this.dataSource = new MatTableDataSource((tasks as ITask[]))
+    })
   }
 
   ngAfterViewInit() {
@@ -77,4 +61,13 @@ export class CatalogComponent implements AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  onStatusChange($event: MatSelectChange, id: number) {
+    this.tasksService.changeStatus(id, $event.value);
+  }
+
+  onUsersChange($event: MatSelectChange, id: number) {
+    this.tasksService.changeUsers(id, $event.value);
+  }
+
 }

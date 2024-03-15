@@ -28,7 +28,7 @@ import {MatDialogClose, MatDialogRef} from '@angular/material/dialog';
     NgOptimizedImage,
     MatDialogClose,
   ],
-  providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
+  providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
@@ -36,6 +36,10 @@ export class ModalComponent {
 
   taskForm: FormGroup;
   submitted: boolean = false;
+
+  usersList = ['Виктория', 'Эдуард', 'Филипп'];
+  minDate = new Date();
+  maxDate = new Date(2030, 2, 14);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,7 +62,8 @@ export class ModalComponent {
     if (!this.taskForm.valid) {
       return;
     }
-    this.tasksService.saveData(this.taskForm.value);
+
+    this.tasksService.saveData({...this.taskForm.value, id: Date.now()});
 
     this.taskForm.reset();
 

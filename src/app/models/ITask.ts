@@ -4,6 +4,6 @@ export interface ITask {
   title: string;
   deadline: string;
   priority: string;
-  progress: number;
+  progress: string;
   users: string[];
 }

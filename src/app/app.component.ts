@@ -13,5 +13,5 @@ import {TopMenuComponent} from "./components/layout/top-menu/top-menu.component"
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'my-app';
+  title = 'app';
 }

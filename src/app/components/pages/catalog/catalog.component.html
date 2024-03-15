@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>Фильтр</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Введите текст" #input>
 </mat-form-field>
 
@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="deadline">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Дедлайн</th>
-      <td mat-cell *matCellDef="let row"> {{ row.deadline }}</td>
+      <td mat-cell *matCellDef="let row"> {{ row.deadline | date :'fullDate' }}</td>
     </ng-container>
 
     <ng-container matColumnDef="priority">
@@ -28,26 +28,41 @@
 
     <ng-container matColumnDef="progress">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Статус</th>
-      <td mat-cell *matCellDef="let row"> {{ row.progress }}%</td>
+      <td mat-cell *matCellDef="let row">
+
+        <mat-select [(value)]="row.progress" (selectionChange)="onStatusChange($event, row.id)">
+          <mat-option value="В очереди">
+            В очереди
+          </mat-option>
+          <mat-option value="В работе">В работе</mat-option>
+          <mat-option value="Заблокировано">Заблокировано</mat-option>
+          <mat-option value="На проверке">На проверке</mat-option>
+          <mat-option value="Завершено">Завершено</mat-option>
+          <mat-option value="На паузе">На паузе</mat-option>
+        </mat-select>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="users">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Исполнители</th>
-      <td mat-cell *matCellDef="let row"> {{ row.users }}</td>
+      <td mat-cell *matCellDef="let row">
+        <mat-select multiple [(value)]="row.users" (selectionChange)="onUsersChange($event, row.id)">
+          <mat-option
+            *ngFor="let user of usersList" [value]="user">{{ user }}
+          </mat-option>
+        </mat-select>
+      </td>
+
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Действия</th>
       <td mat-cell *matCellDef="let row">
-        {{ row.actions }}
-        <div>
-          <button class="form-field" mat-raised-button color="primary">Редактировать
-          </button>
+        <a routerLink="/task/{{ row.id }}">
           <button class="form-field" mat-raised-button color="warn">
-            <a routerLink="/task">Подробнее</a>
+            Подробнее
           </button>
-        </div>
-
+        </a>
       </td>
     </ng-container>
 
@@ -55,7 +70,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+      <td class="mat-cell" colspan="4">Нет данных "{{ input.value }}"</td>
     </tr>
   </table>
 

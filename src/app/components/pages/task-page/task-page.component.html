@@ -1,1 +1,26 @@
-<div>task-page test</div>
+<div class="task">
+  <div class="header">
+    <div class="task-prop-header">Заголовок</div>
+    <div class="task-prop-value">{{ task?.header }}</div>
+  </div>
+  <div class="title">
+    <div class="task-prop-header">Название</div>
+    <div class="task-prop-value">{{ task?.title }}</div>
+  </div>
+  <div class="users">
+    <div class="task-prop-header">Исполнители</div>
+    <div class="task-prop-value">{{ task?.users }}</div>
+  </div>
+  <div class="deadline">
+    <div class="task-prop-header">Дедлайн</div>
+    <div class="task-prop-value">{{ task?.deadline | date :'fullDate' }}</div>
+  </div>
+  <div class="priority">
+    <div class="task-prop-header">Приоритет</div>
+    <div class="task-prop-value">{{ task?.priority }}</div>
+  </div>
+  <div class="progress">
+    <div class="task-prop-header">Статус</div>
+    <div class="task-prop-value">{{ task?.progress }}</div>
+  </div>
+</div>
