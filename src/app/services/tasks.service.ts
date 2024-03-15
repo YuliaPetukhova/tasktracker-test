@@ -13,26 +13,24 @@ export class TasksService {
   }
 
   saveData(task: ITask) {
-    let formDataArray = JSON.parse(localStorage.getItem('tasks')!) || [];
+    let formDataArray: ITask[] = JSON.parse(localStorage.getItem('tasks')!) || [];
 
     formDataArray.push(task);
     localStorage.setItem('tasks', JSON.stringify(formDataArray));
     this.taskSubject.next(formDataArray);
   }
 
-  findTaskById(id: number) {
+  findTaskById(id: number): ITask {
     let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
+    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
 
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id)
-    let localStorageTask: ITask = localStorageTasks[localStorageTaskIndex];
-    return localStorageTask;
+    return localStorageTasks[localStorageTaskIndex];
   }
-
 
   changeStatus(id: number, value: string) {
     let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
 
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id)
+    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
     let localStorageTask: ITask = localStorageTasks[localStorageTaskIndex];
 
     localStorageTask.progress = value;
@@ -44,7 +42,7 @@ export class TasksService {
   changeUsers(id: number, value: string[]) {
     let localStorageTasks = JSON.parse(localStorage.getItem('tasks')!);
 
-    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id)
+    let localStorageTaskIndex = localStorageTasks.findIndex((filteredTask: ITask) => filteredTask.id == id);
     let localStorageTask: ITask = localStorageTasks[localStorageTaskIndex];
 
     localStorageTask.users = value;

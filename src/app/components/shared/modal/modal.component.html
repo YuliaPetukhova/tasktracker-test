@@ -3,6 +3,10 @@
 </div>
 
 <form [formGroup]="taskForm" (submit)="submit()">
+  <mat-form-field class="form-field">
+    <mat-label>Заголовок</mat-label>
+    <input matInput formControlName="title" required>
+  </mat-form-field>
 
   <mat-form-field class="form-field">
     <mat-label>Название</mat-label>
@@ -10,15 +14,12 @@
   </mat-form-field>
 
   <mat-form-field class="form-field">
-    <mat-label>Заголовок</mat-label>
-    <input matInput formControlName="title" required>
-  </mat-form-field>
-
-  <mat-form-field class="form-field">
     <input matInput formControlName="deadline"
            required [matDatepicker]="myDatepicker"
            [min]="minDate" [max]="maxDate"
-           placeholder="Выберите дату">
+           [inputMask]="dateInputMask"
+           [formControl]="dateFC"
+           placeholder="dd/mm/yyyy">
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #myDatepicker></mat-datepicker>
   </mat-form-field>
@@ -35,12 +36,7 @@
   <mat-form-field class="form-field">
     <mat-label>Статус</mat-label>
     <mat-select formControlName="progress" required>
-      <mat-option value="В очереди">В очереди</mat-option>
-      <mat-option value="В работе">В работе</mat-option>
-      <mat-option value="Заблокировано">Заблокировано</mat-option>
-      <mat-option value="На проверке">На проверке</mat-option>
-      <mat-option value="Завершено">Завершено</mat-option>
-      <mat-option value="На паузе">На паузе</mat-option>
+      <mat-option *ngFor="let progress of progressList" [value]="progress">{{ progress }}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -51,6 +47,5 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Create</button>
+  <button mat-raised-button color="primary" type="submit">Создать</button>
 </form>
-

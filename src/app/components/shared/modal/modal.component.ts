@@ -8,9 +8,13 @@ import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE} from "@angular/material/core";
-import {FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl} from '@angular/forms';
 import {TasksService} from "../../../services/tasks.service";
 import {MatDialogClose, MatDialogRef} from '@angular/material/dialog';
+import {InputMaskModule} from '@ngneat/input-mask';
+import {createMask} from '@ngneat/input-mask';
+import {userList} from "../../../data/userList";
+import {progressList} from "../../../data/progressList";
 
 @Component({
   selector: 'app-modal',
@@ -27,6 +31,7 @@ import {MatDialogClose, MatDialogRef} from '@angular/material/dialog';
     CommonModule,
     NgOptimizedImage,
     MatDialogClose,
+    InputMaskModule
   ],
   providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}],
   templateUrl: './modal.component.html',
@@ -37,7 +42,8 @@ export class ModalComponent {
   taskForm: FormGroup;
   submitted: boolean = false;
 
-  usersList = ['Виктория', 'Эдуард', 'Филипп'];
+  usersList = userList;
+  progressList = progressList;
   minDate = new Date();
   maxDate = new Date(2030, 2, 14);
 
@@ -69,4 +75,19 @@ export class ModalComponent {
 
     this.dialogRef.close();
   }
+
+  dateInputMask = createMask<Date>({
+    alias: 'datetime',
+    inputFormat: 'dd/mm/yyyy',
+    parser: (value: string) => {
+      const values = value.split('/');
+      const year = +values[2];
+      const month = +values[1] - 1;
+      const date = +values[0];
+      return new Date(year, month, date);
+    },
+  });
+
+  dateFC = new FormControl('');
 }
+

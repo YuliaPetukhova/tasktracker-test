@@ -11,6 +11,8 @@ import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect, MatSelectChange} from "@angular/material/select";
 import {TasksService} from "../../../services/tasks.service";
 import {DatePipe, NgForOf} from "@angular/common";
+import {userList} from '../../../data/userList';
+import {progressList} from "../../../data/progressList";
 
 @Component({
   selector: 'app-catalog',
@@ -38,10 +40,9 @@ export class CatalogComponent implements AfterViewInit {
 
   users = new FormControl();
 
-  usersList = ['Виктория', 'Эдуард', 'Филипп'];
+  usersList = userList;
 
   dataSource: MatTableDataSource<ITask>;
-
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
@@ -50,7 +51,7 @@ export class CatalogComponent implements AfterViewInit {
 
     tasksService.taskSubject.subscribe((tasks) => {
       this.dataSource = new MatTableDataSource((tasks as ITask[]))
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -70,4 +71,5 @@ export class CatalogComponent implements AfterViewInit {
     this.tasksService.changeUsers(id, $event.value);
   }
 
+  protected readonly progressList = progressList;
 }

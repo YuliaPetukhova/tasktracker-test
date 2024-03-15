@@ -7,7 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from '@angular/forms';
 import {ModalComponent} from "../../shared/modal/modal.component";
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-top-menu',
@@ -22,18 +22,16 @@ import {MatDialog} from '@angular/material/dialog';
     ReactiveFormsModule,
     CommonModule,
     ModalComponent,
-
   ],
   templateUrl: './top-menu.component.html',
   styleUrl: './top-menu.component.scss'
 })
 export class TopMenuComponent {
-
   constructor(public dialog: MatDialog) {
   }
 
   openForm() {
-    let dialogRef = this.dialog.open(ModalComponent, {
+    let dialogRef: MatDialogRef<ModalComponent, any> = this.dialog.open(ModalComponent, {
       height: '400px',
       width: '600px',
     });
