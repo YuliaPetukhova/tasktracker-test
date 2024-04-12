@@ -15,6 +15,7 @@ import {InputMaskModule} from '@ngneat/input-mask';
 import {createMask} from '@ngneat/input-mask';
 import {userList} from "../../../data/userList";
 import {progressList} from "../../../data/progressList";
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-modal',
@@ -31,7 +32,8 @@ import {progressList} from "../../../data/progressList";
     CommonModule,
     NgOptimizedImage,
     MatDialogClose,
-    InputMaskModule
+    InputMaskModule,
+    MatCardModule
   ],
   providers: [provideNativeDateAdapter(), {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}],
   templateUrl: 'modal.component.html',
@@ -44,7 +46,7 @@ export class ModalComponent {
   usersList: string[] = userList;
   progressList: string[] = progressList;
   minDate: Date = new Date();
-  maxDate: Date = new Date(2030, 2, 14);
+  maxDate: Date = new Date(2030, 0, 1);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,10 +63,11 @@ export class ModalComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     if (!this.taskForm.valid) {
+      alert('Ошибка заполнения формы. Проверьте все поля, пожалуйста')
       return;
     }
 
@@ -74,18 +77,4 @@ export class ModalComponent {
 
     this.dialogRef.close();
   }
-
-  dateInputMask = createMask<Date>({
-    alias: 'datetime',
-    inputFormat: 'dd/mm/yyyy',
-    parser: (value: string) => {
-      const values = value.split('/');
-      const year = +values[2];
-      const month = +values[1] - 1;
-      const date = +values[0];
-      return new Date(year, month, date);
-    },
-  });
-
-  dateFC: FormControl<string | null> = new FormControl('');
 }

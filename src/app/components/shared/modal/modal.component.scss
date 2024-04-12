@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  margin-top: 38px;
-  padding: 0 10px 0 10px;
+  margin-top: 2.5em;
+  padding: 1rem;
 
   .form-field {
     display: block;
@@ -12,7 +12,7 @@
 
   .close-btn img {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 0.3em;
+    top: 0.3em;
   }
 }

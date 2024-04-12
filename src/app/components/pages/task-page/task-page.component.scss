@@ -5,17 +5,16 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: content-box;
-  min-height: 104px;
-  margin: 10px auto;
-  padding: 0 10px;
+  margin: 0 0.6em;
+  padding: 1rem;
 
   .task-prop-header {
-    font-size: 23px;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 1em;
   }
 
   .task-prop-value {
-    margin-bottom: 15px;
+    margin-bottom: 1em;
   }
 }
 
@@ -26,9 +25,9 @@
     justify-content: stretch;
 
     .task-prop-header {
-      font-size: 20px;
-      margin-bottom: 15px;
-      padding-right: 30px;
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+      padding-right: 2em;
     }
   }
 }

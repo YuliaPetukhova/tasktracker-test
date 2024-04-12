@@ -1,11 +1,15 @@
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { TaskPageComponent } from './components/pages/task-page/task-page.component';
-import { CatalogComponent } from './components/pages/catalog/catalog.component';
+import {Routes, RouterModule} from '@angular/router';
+import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
-  { path: 'task/:id', component: TaskPageComponent },
-  { path: 'catalog', component: CatalogComponent },
+  {
+    path: 'task/:id',
+    loadComponent: () => import('./components/pages/task-page/task-page.component').then(m => m.TaskPageComponent)
+  },
+  {
+    path: 'catalog',
+    loadComponent: () => import('./components/pages/catalog/catalog.component').then(m => m.CatalogComponent)
+  },
 ];
 
 @NgModule({
@@ -13,4 +17,3 @@ export const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutes {}
-

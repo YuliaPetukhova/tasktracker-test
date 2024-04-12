@@ -2,24 +2,26 @@
   <img ngSrc="assets/close.png" alt="close-btn" height="32" width="32">
 </div>
 
-<form [formGroup]="taskForm" (submit)="onSubmit()">
+<form id="f" [formGroup]="taskForm" (submit)="onSubmit()">
   <mat-form-field class="form-field">
     <mat-label>Заголовок</mat-label>
-    <input matInput formControlName="title" required>
+    <input type="text" matInput formControlName="title" required>
   </mat-form-field>
 
   <mat-form-field class="form-field">
     <mat-label>Название</mat-label>
-    <input matInput formControlName="header" required>
+    <input type="text" matInput formControlName="header" required>
   </mat-form-field>
 
   <mat-form-field class="form-field">
-    <input matInput formControlName="deadline"
-           required [matDatepicker]="myDatepicker"
-           [min]="minDate" [max]="maxDate"
-           [inputMask]="dateInputMask"
-           [formControl]="dateFC"
-           placeholder="dd/mm/yyyy">
+    <input
+      type="text"
+      matInput
+      formControlName="deadline"
+      required [matDatepicker]="myDatepicker"
+      [min]="minDate" [max]="maxDate"
+      placeholder="dd.mm.yyyy"
+    >
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #myDatepicker></mat-datepicker>
   </mat-form-field>

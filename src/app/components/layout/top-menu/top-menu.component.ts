@@ -30,10 +30,10 @@ export class TopMenuComponent {
   constructor(public dialog: MatDialog) {
   }
 
-  openForm() {
-    let dialogRef: MatDialogRef<ModalComponent, any> = this.dialog.open(ModalComponent, {
-      height: '400px',
-      width: '600px',
+  openForm(): void {
+    let dialogRef: MatDialogRef<ModalComponent> = this.dialog.open(ModalComponent, {
+      height: '80vmin',
+      width: '90vmin',
     });
   }
 }

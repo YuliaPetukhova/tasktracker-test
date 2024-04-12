@@ -38,38 +38,38 @@ import {progressList} from "../../../data/progressList";
 export class CatalogComponent implements AfterViewInit {
   displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users', 'actions'];
 
-  users = new FormControl();
+  users: FormControl<string> = new FormControl();
 
-  usersList = userList;
+  usersList: string[] = userList;
 
   dataSource: MatTableDataSource<ITask>;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
-  protected readonly progressList = progressList;
+  protected readonly progressList: string[] = progressList;
 
   constructor(private tasksService: TasksService) {
     this.dataSource = new MatTableDataSource(undefined);
 
-    tasksService.taskSubject.subscribe((tasks) => {
+    tasksService.taskSubject.subscribe((tasks: ITask [] | null): void => {
       this.dataSource = new MatTableDataSource((tasks as ITask[]))
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(event: Event): void {
+    const filterValue: string = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onStatusChange($event: MatSelectChange, id: number) {
+  onStatusChange($event: MatSelectChange, id: number): void {
     this.tasksService.changeStatus(id, $event.value);
   }
 
-  onUsersChange($event: MatSelectChange, id: number) {
+  onUsersChange($event: MatSelectChange, id: number): void {
     this.tasksService.changeUsers(id, $event.value);
   }
 }

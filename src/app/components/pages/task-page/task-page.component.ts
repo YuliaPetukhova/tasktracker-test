@@ -39,7 +39,6 @@ export class TaskPageComponent implements OnInit {
     private tasksService: TasksService,
   ) {
   }
-
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.task = this.tasksService.findTaskById(params['id'])!;
