@@ -12,7 +12,6 @@ import {FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl} fr
 import {TasksService} from "../../../services/tasks.service";
 import {MatDialogClose, MatDialogRef} from '@angular/material/dialog';
 import {InputMaskModule} from '@ngneat/input-mask';
-import {createMask} from '@ngneat/input-mask';
 import {userList} from "../../../data/userList";
 import {progressList} from "../../../data/progressList";
 import {MatCardModule} from '@angular/material/card';
@@ -40,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: 'modal.component.scss'
 })
 export class ModalComponent {
+  errorMessage: string = 'Заполните поле';
   taskForm: FormGroup;
   submitted: boolean = false;
 
