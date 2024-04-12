@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterOutlet} from "@angular/router";
 import {TasksService} from "../../../services/tasks.service";
 import {ITask} from '../../../models/ITask';
@@ -12,6 +12,7 @@ import {
 } from "@angular/material/expansion";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-task-page',
@@ -31,17 +32,23 @@ import {DatePipe} from "@angular/common";
   templateUrl: 'task-page.component.html',
   styleUrl: 'task-page.component.scss'
 })
-export class TaskPageComponent implements OnInit {
+export class TaskPageComponent implements OnInit, OnDestroy {
   task: ITask | undefined;
+  subscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private tasksService: TasksService,
   ) {
   }
+
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.subscription = this.route.params.subscribe(params => {
       this.task = this.tasksService.findTaskById(params['id'])!;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

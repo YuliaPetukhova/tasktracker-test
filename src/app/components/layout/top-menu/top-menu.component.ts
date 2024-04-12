@@ -29,7 +29,6 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 export class TopMenuComponent {
   constructor(public dialog: MatDialog) {
   }
-
   openForm(): void {
     let dialogRef: MatDialogRef<ModalComponent> = this.dialog.open(ModalComponent, {
       height: '80vmin',

@@ -1,4 +1,4 @@
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, ViewChild, AfterViewInit, OnDestroy} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
@@ -13,6 +13,7 @@ import {TasksService} from "../../../services/tasks.service";
 import {DatePipe, NgForOf} from "@angular/common";
 import {userList} from '../../../data/userList';
 import {progressList} from "../../../data/progressList";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-catalog',
@@ -35,7 +36,9 @@ import {progressList} from "../../../data/progressList";
   templateUrl: 'catalog.component.html',
   styleUrl: 'catalog.component.css'
 })
-export class CatalogComponent implements AfterViewInit {
+export class CatalogComponent implements AfterViewInit, OnDestroy {
+  subscription?: Subscription;
+
   displayedColumns: string[] = ['header', 'title', 'deadline', 'priority', 'progress', 'users', 'actions'];
 
   users: FormControl<string> = new FormControl();
@@ -51,9 +54,13 @@ export class CatalogComponent implements AfterViewInit {
   constructor(private tasksService: TasksService) {
     this.dataSource = new MatTableDataSource(undefined);
 
-    tasksService.taskSubject.subscribe((tasks: ITask [] | null): void => {
+    this.subscription = tasksService.taskSubject.subscribe((tasks: ITask [] | null): void => {
       this.dataSource = new MatTableDataSource((tasks as ITask[]))
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   ngAfterViewInit(): void {
